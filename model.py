@@ -1,10 +1,11 @@
 import numpy as np
-from tensorflow.keras.applications.inception_resnet_v2 import preprocess_input
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
+from keras.applications.inception_resnet_v2 import preprocess_input
+from keras.models import load_model
+from keras.preprocessing import image
+
 
 def predict(image_path):
-    model = load_model('model_inceptionresnetv2.h5')
+    model = load_model('model2_inceptionresnetv2.h5')
     img = image.load_img(image_path, target_size=(299,299))
     x = image.img_to_array(img)
     x = np.expand_dims(x, axis=0)
