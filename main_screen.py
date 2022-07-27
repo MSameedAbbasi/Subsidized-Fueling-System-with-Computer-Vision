@@ -15,8 +15,8 @@ cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
+cat_price_dict = {0: '130', 1:'180', 2:'230'}
 
-price = '0'
 def show_frame():
 
     cam = cv2.VideoCapture(0)
@@ -41,9 +41,9 @@ def show_frame():
             image_path = "SFS Captures/" + datetime.datetime.now().strftime("%d-%m-%y %H-%M-%S") + ".jpg"
             cv2.imwrite(image_path, frame)
             #print("{} written!".format(img_name))
-            result = predict(image_path)
+            category = predict(image_path)
             # price = '300'
-            print(result)
+            print(category)
             
     cam.release()
 
@@ -58,20 +58,21 @@ def predict(image_path):
     x = np.expand_dims(x, axis=0)
     img_data = preprocess_input(x)
     prediction = np.argmax(model.predict(img_data), axis=1)[0]
-    price = prediction
+    price = cat_price_dict[prediction]
 
     root = Tk()
+    root.geometry("200x200")
     root.bind('<Escape>', lambda e: root.quit())
     lmain = Label(root)
-    lmain.pack()
+    lmain.grid(row=0, column=0)
     price_label = StringVar()
     label = Label(root, textvariable=price_label)
     price_label.set("Price")
-    label.pack()
+    label.grid(row=5, column=10)
 
     var2 = StringVar()
     label2 = Label(root, textvariable=var2)
-    label2.pack()
+    label2.grid(row=5, column=15)
 
     var2.set(price)
     root.mainloop()
