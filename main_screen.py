@@ -9,9 +9,9 @@ from tkinter import *
 import datetime
 
 width, height = 800, 600
-cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+cam = cv2.VideoCapture(0)
+cam.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+cam.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
 category_dict = {'0': 'Large', '1':'Medium', '2':'Small'}
 price_dict = {'0': 'Rs.230/ltr', '1':'Rs.180/ltr', '2':'Rs.130/ltr'}
